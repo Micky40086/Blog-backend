@@ -1,0 +1,19 @@
+---
+:pidfile: ./tmp/pids/sidekiq.pid
+:logfile: ./log/sidekiq.log
+:concurrency: 5
+staging:
+  :concurrency: 10
+production:
+  :concurrency: 20
+:queues:
+  - critical
+  - default
+  - low
+:schedule:
+  hard_worker:
+    cron: '* 0 * * * *'   # Runs once per minute
+    class: HardWorker
+    args: ["HEHE"]
+
+#bundle exec sidekiq -d -C config/sidekiq.yml -e development
