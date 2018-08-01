@@ -15,11 +15,11 @@
   <body>
     <%= render partial: 'partials/navbar' if is_admin_path(controller_path()) %>
     <%= yield %>
-    <%= javascript_include_tag 'admin', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'admin_theme', 'data-turbolinks-track': 'reload' %>
     <% if ::Rails.application.assets.find_asset("#{controller_path()}.js") %>
       <%= javascript_include_tag controller_path() %>
     <% else %>
-      <%= javascript_include_tag "admin/index" %>
+      <%= javascript_include_tag "admin/index" if is_admin_path(controller_path()) %>
     <% end %>
     <%= javascript_include_tag 'admin/vendor/sb-admin-2', 'data-turbolinks-track': 'reload' %>
     <%= yield(:script) %>

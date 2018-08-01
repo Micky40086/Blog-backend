@@ -1,7 +1,5 @@
-class Admin::PostsController < ApplicationController
-  before_action :authenticate_admin!
+class Admin::PostsController < AdminController
   authorize_resource
-  layout "admin"
 
   def index
     service = FireStore.new(current_admin)
